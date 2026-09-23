@@ -43,3 +43,12 @@ Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
 - When asked to make a change, first read `README.md` and this file.
 - Do not invent dependencies; check what is installed before proposing libraries.
 - Never commit unless explicitly asked.
+
+### Project rules (learned)
+
+Testable, project-specific rules that should fail a review if violated:
+
+1. **Forms validate through a pure module, never inline.** All form validation lives in a pure function returning `{ values, errors }` (see `settings-form/src/validate.js`) and is unit-tested with `node:test`. A DOM handler that contains validation logic — or any use of `alert()` for errors — fails review.
+2. **Shared JS must bridge Node and the browser explicitly.** Files loaded by `<script>` must not `require()` CommonJS modules; a module that runs in both must expose `module.exports` for Node *and* a `window.*` global for the browser. A browser `ReferenceError: require is not defined` fails review.
+3. **Email (and other field) rules use one named constant.** `EMAIL_RE` in `settings-form/src/validate.js` is the only email check; an `includes('@')`-style check anywhere fails review. Adding or changing a field rule requires adding a matching `node:test` case.
+4. **Verify before shipping.** Every branch task must run its verification step (`npm test`; load the page and exercise it) and record the result before the commit is considered done.
