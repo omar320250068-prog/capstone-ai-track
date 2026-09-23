@@ -3,6 +3,11 @@ import PageHeader from "@/components/page-header";
 
 const SECTIONS = [
   {
+    href: "/chat",
+    title: "Streaming chat",
+    description: "The capstone's central AI interaction — live token-by-token streaming with Stop and auto-scroll.",
+  },
+  {
     href: "/workflow",
     title: "Workflow",
     description: "How this app was built — prompt, scaffold, test, deploy.",
@@ -30,7 +35,7 @@ export default function Home() {
       <PageHeader
         eyebrow="AI-assisted deployment"
         title="Ship a Next.js app on day one."
-        description="Routes, a shared layout with navigation, Tailwind design tokens, a server-only health check and a live preview — scaffolded and deployed on day one of the capstone."
+        description="Routes, a shared layout with navigation, Tailwind design tokens, a server-only health check, a streaming chat, and a live preview — scaffolded and deployed on day one of the capstone."
       />
       <div className="grid gap-4 sm:grid-cols-2">
         {SECTIONS.map(({ href, title, description }) => (

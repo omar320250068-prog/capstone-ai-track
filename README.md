@@ -31,6 +31,8 @@ Check `git log` — this repo is built by incremental, conventional commits.
 - [x] Phase Foundations · drill: settings form built twice (`settings-form/`, `WORKFLOW.md`)
 - [x] Phase Foundations · assignment: React app built with AI (`settings-form-react/`)
 - [x] Phase Foundations · deployment: Next.js app + health check + live preview (`capstone-app/`, `deliverables/DEPLOYMENT.md`)
+- [x] Phase Foundations · a11y: hand-built dialog, tabs, disclosure + keyboard tests + shadcn comparison (`playground/`, `playground/NOTES.md`, on `feature/a11y-playground`)
+- [x] Phase Build (core): streaming chat — token-by-token, thinking handoff, stop, pinned auto-scroll, mock-or-Claude backend (`capstone-app/`, `deliverables/CHAT.md`)
 - [ ] Permanent Vercel/Netlify deploy (needs account login)
 
 ## License
