@@ -4,7 +4,7 @@ Capstone project for the **AI-Assisted Development Track** — a structured prog
 
 ## Status
 
-Phase: **Setup** — first three commits landed under Conventional Commits; toolchain verified.
+Phase: **Foundations · deployment** — `capstone-app/` is scaffolded, verified, and served at a live preview (see `deliverables/DEPLOYMENT.md`).
 
 ## Toolchain
 
@@ -28,7 +28,10 @@ Check `git log` — this repo is built by incremental, conventional commits.
 ## Roadmap
 
 - [x] Phase Setup: toolchain, repo scaffold, `CLAUDE.md`, three commits
-- [ ] AI-assisted features with verified, committed history
+- [x] Phase Foundations · drill: settings form built twice (`settings-form/`, `WORKFLOW.md`)
+- [x] Phase Foundations · assignment: React app built with AI (`settings-form-react/`)
+- [x] Phase Foundations · deployment: Next.js app + health check + live preview (`capstone-app/`, `deliverables/DEPLOYMENT.md`)
+- [ ] Permanent Vercel/Netlify deploy (needs account login)
 
 ## License
 
