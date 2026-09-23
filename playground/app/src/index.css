@@ -1,0 +1,244 @@
+:root {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color-scheme: light;
+  color: #18181b;
+  background: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.page-header p,
+.demo p {
+  color: #52525b;
+  max-width: 70ch;
+}
+
+kbd {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.85em;
+  background: #f4f4f5;
+  border: 1px solid #d4d4d8;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  background: #f4f4f5;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.demo {
+  margin: 40px 0;
+  padding: 24px;
+  border: 1px solid #e4e4e7;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.demo h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid #d4d4d8;
+  background: #fff;
+  color: #18181b;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.button:hover {
+  background: #f4f4f5;
+}
+
+.button:focus-visible,
+.tabs-tab:focus-visible,
+.disclosure-button:focus-visible,
+.field input:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.button-primary {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: #4338ca;
+}
+
+/* --- Dialog --- */
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 24, 27, 0.5);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.dialog-title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.dialog-description {
+  margin: 0 0 16px;
+  color: #52525b;
+  font-size: 0.95rem;
+}
+
+.field {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.field span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.field input {
+  font: inherit;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* --- Tabs --- */
+
+.tabs-list {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #e4e4e7;
+}
+
+.tabs-tab {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: #52525b;
+  cursor: pointer;
+}
+
+.tabs-tab[aria-selected='true'] {
+  color: #4338ca;
+  border-bottom-color: #6366f1;
+}
+
+.tabs-panels {
+  padding: 16px 4px 4px;
+}
+
+.tabs-panel {
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Disclosure --- */
+
+.disclosure-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.disclosure-heading {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.disclosure-button {
+  font: inherit;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.disclosure-marker {
+  transition: transform 0.15s ease;
+}
+
+.disclosure-button[aria-expanded='true'] .disclosure-marker {
+  transform: rotate(90deg);
+}
+
+.disclosure-region {
+  border-left: 3px solid #6366f1;
+  margin: 8px 4px 0 20px;
+  padding: 4px 12px;
+}
+
+.page-footer {
+  margin-top: 48px;
+  color: #71717a;
+  font-size: 0.9rem;
+  border-top: 1px solid #e4e4e7;
+  padding-top: 16px;
+}
