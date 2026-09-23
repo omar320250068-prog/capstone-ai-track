@@ -14,7 +14,16 @@ export type SettingsErrors = Partial<
   Record<'displayName' | 'email' | 'password' | 'passwordConfirm' | 'theme' | 'maxResults', string>
 >
 
-export function validateSettings(input: SettingsInput) {
+export type ValidatedValues = {
+  displayName: string
+  email: string
+  password: string
+  passwordConfirm: string
+  theme: (typeof THEMES)[number]
+  maxResults: number
+}
+
+export function validateSettings(input: SettingsInput): { values: ValidatedValues; errors: SettingsErrors } {
   const errors: SettingsErrors = {}
 
   const name = input.displayName.trim()
@@ -31,15 +40,23 @@ export function validateSettings(input: SettingsInput) {
 
   if (input.passwordConfirm !== password) errors.passwordConfirm = 'Passwords do not match.'
 
-  if (!THEMES.includes(input.theme as (typeof THEMES)[number])) errors.theme = 'Theme must be light, dark, or system.'
+  const theme = input.theme
+  if (!THEMES.includes(theme as (typeof THEMES)[number])) errors.theme = 'Theme must be light, dark, or system.'
 
-  const maxResults = parseInt(input.maxResults, 10)
-  if (Number.isNaN(maxResults) || maxResults < 1 || maxResults > 100) {
+  const maxResultsNum = Number(input.maxResults)
+  if (input.maxResults.trim() === '' || !Number.isInteger(maxResultsNum) || maxResultsNum < 1 || maxResultsNum > 100) {
     errors.maxResults = 'Max results must be an integer between 1 and 100.'
   }
 
   return {
     errors,
-    values: { displayName: name, email, password, passwordConfirm: input.passwordConfirm, theme: input.theme, maxResults },
+    values: {
+      displayName: name,
+      email,
+      password,
+      passwordConfirm: input.passwordConfirm,
+      theme: theme as ValidatedValues['theme'],
+      maxResults: maxResultsNum,
+    },
   }
 }
