@@ -1,0 +1,88 @@
+:root {
+  --bg: #f6f7f9;
+  --fg: #1b1f24;
+  --card: #ffffff;
+  --err: #b3261e;
+  --acc: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12141a;
+    --fg: #e6e8ee;
+    --card: #1d212b;
+    --err: #ff9d94;
+    --acc: #60a5fa;
+  }
+}
+
+.hero {
+  text-align: center;
+}
+
+.settings-card {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  background: var(--card);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-card h1 {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  padding: 8px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+}
+
+.field input[aria-invalid='true'] {
+  border-color: var(--err);
+}
+
+.error {
+  color: var(--err);
+  font-size: 0.85rem;
+  min-height: 1.1em;
+  margin: 0;
+}
+
+.ok {
+  color: #15803d;
+  margin: 0;
+}
+
+button[type='submit'] {
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--acc);
+  color: #fff;
+  font-weight: 600;
+  font: inherit;
+  cursor: pointer;
+}
+
+button[type='submit']:hover {
+  filter: brightness(1.05);
+}
