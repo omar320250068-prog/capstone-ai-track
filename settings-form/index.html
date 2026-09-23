@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+</head>
+<body>
+<h1>Settings</h1>
+<form id="settings">
+  <div>Name: <input id="name"></div>
+  <div>Email: <input id="email"></div>
+  <div>Password: <input id="password" type="password"></div>
+  <div>Theme:
+    <select id="theme">
+      <option>light</option>
+      <option>dark</option>
+      <option>system</option>
+    </select>
+  </div>
+  <div>Max results: <input id="maxResults" type="number" value="20"></div>
+  <button type="submit">Save</button>
+</form>
+<script>
+const form = document.getElementById('settings');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const errors = [];
+  if (!name) errors.push('Name is required');
+  if (!email.includes('@')) errors.push('Enter a valid email');
+  if (!password) errors.push('Password is required');
+  if (errors.length) {
+    alert(errors.join('\n'));
+    return;
+  }
+  alert('Saved!');
+});
+</script>
+</body>
+</html>
