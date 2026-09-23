@@ -28,6 +28,7 @@ import {
   chatBackend,
 } from "@/lib/ai/config";
 import { mockTextStream } from "@/lib/ai/mock";
+import { TOOLS, ToolExecutionError, type ChatTools } from "@/lib/ai/tools";
 
 /** Cap the handler at ~1 minute on platforms that enforce a timeout. */
 export const maxDuration = 60;
@@ -46,8 +47,11 @@ export async function POST(request: Request) {
     sendReasoning: true,
     sendSources: true,
     originalMessages: messages,
-    // Never leak stack traces to the client; surface a human-readable string.
+    // Never leak stack traces to the client. Tool executions throw designed,
+    // user-readable messages (ToolExecutionError) — pass those through
+    // verbatim; wrap anything unknown in transport-failure framing.
     onError: (error: unknown) => {
+      if (error instanceof ToolExecutionError) return error.message;
       const detail = error instanceof Error ? error.message : String(error);
       return `The stream failed: ${detail}. Please try again.`;
     },
@@ -70,6 +74,9 @@ async function claudeTextStream(messages: UIMessage[]) {
     messages: await convertToModelMessages(messages),
     temperature: TEMPERATURE,
     maxOutputTokens: MAX_OUTPUT_TOKENS,
+    // The tool set defined in src/lib/ai/tools.ts. Claude reads the schema
+    // + descriptions and decides when to call audit_repo / site_meta.
+    tools: TOOLS as ChatTools,
     // Extended thinking (ANTHROPIC_THINKING=1) makes Claude emit reasoning
     // parts first — the client shows a thinking indicator before the first
     // token, then hands off into the text stream.

@@ -8,6 +8,7 @@
 import type { UIMessage } from "ai";
 import { MarkdownText, StreamingCaret, StreamingText } from "./message-content";
 import ThinkingIndicator from "./thinking-indicator";
+import ToolUI, { type ToolPartSnapshot } from "./tool-ui";
 
 type MessageItemProps = {
   message: UIMessage;
@@ -15,8 +16,15 @@ type MessageItemProps = {
   isStreaming: boolean;
 };
 
+/** Narrow the parts array to the tool lifecycle parts (type: "tool-…"). */
+function isToolPart(part: UIMessage["parts"][number]): part is UIMessage["parts"][number] & ToolPartSnapshot {
+  return typeof part.type === "string" && (part.type as string).startsWith("tool-");
+}
+
 export default function MessageItem({ message, isStreaming }: MessageItemProps) {
   const isUser = message.role === "user";
+
+  const toolParts = message.parts.filter(isToolPart);
 
   const text = message.parts
     .filter((part) => part.type === "text")
@@ -39,6 +47,15 @@ export default function MessageItem({ message, isStreaming }: MessageItemProps) 
   const showIndicator = isStreaming && !hasText;
   const indicatorLabel = isThinking ? "Thinking" : "Working";
 
+  const toolColumn =
+    toolParts.length > 0 ? (
+      <div className="mb-2 space-y-2">
+        {toolParts.map((part) => (
+          <ToolUI key={part.toolCallId} part={part} />
+        ))}
+      </div>
+    ) : null;
+
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div
@@ -50,16 +67,21 @@ export default function MessageItem({ message, isStreaming }: MessageItemProps) 
       >
         {isUser ? (
           <p className="whitespace-pre-wrap text-white">{text}</p>
-        ) : showIndicator ? (
-          // Same container slot as the text below -> smooth handoff.
-          <ThinkingIndicator label={indicatorLabel} />
-        ) : isStreaming && hasText ? (
-          <div className="flex items-start gap-0.5">
-            <StreamingText text={text} />
-            <StreamingCaret />
-          </div>
         ) : (
-          <MarkdownText text={text} />
+          <>
+            {toolColumn}
+            {showIndicator ? (
+              // Same container slot as the text below -> smooth handoff.
+              <ThinkingIndicator label={indicatorLabel} />
+            ) : isStreaming && hasText ? (
+              <div className="flex items-start gap-0.5">
+                <StreamingText text={text} />
+                <StreamingCaret />
+              </div>
+            ) : (
+              <MarkdownText text={text} />
+            )}
+          </>
         )}
       </div>
     </div>

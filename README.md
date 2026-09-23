@@ -4,7 +4,7 @@ Capstone project for the **AI-Assisted Development Track** — a structured prog
 
 ## Status
 
-Phase: **Foundations · deployment** — `capstone-app/` is scaffolded, verified, and served at a live preview (see `deliverables/DEPLOYMENT.md`).
+Phase: **Build (core) · tools & generative UI** — `capstone-app/` hosts streaming chat (mock-or-Claude backend) plus Zod-defined server-side tools whose lifecycle states and results render as bespoke UI; live preview per `deliverables/DEPLOYMENT.md`, evidence per `deliverables/TOOLS.md`.
 
 ## Toolchain
 
@@ -33,6 +33,7 @@ Check `git log` — this repo is built by incremental, conventional commits.
 - [x] Phase Foundations · deployment: Next.js app + health check + live preview (`capstone-app/`, `deliverables/DEPLOYMENT.md`)
 - [x] Phase Foundations · a11y: hand-built dialog, tabs, disclosure + keyboard tests + shadcn comparison (`playground/`, `playground/NOTES.md`, on `feature/a11y-playground`)
 - [x] Phase Build (core): streaming chat — token-by-token, thinking handoff, stop, pinned auto-scroll, mock-or-Claude backend (`capstone-app/`, `deliverables/CHAT.md`)
+- [x] Phase Build (core): tools + generative UI — Zod-defined server-side tools (`audit_repo`, `site_meta`) with real execution, four lifecycle states rendered distinctly, error-first design, tool contract in README (`capstone-app/`, `deliverables/TOOLS.md`)
 - [ ] Permanent Vercel/Netlify deploy (needs account login)
 
 ## License

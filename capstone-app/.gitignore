@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local preview tunnel
+lt-run.cmd
+lt-chat.log
+lt-chat.err.log
+
