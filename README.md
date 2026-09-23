@@ -28,7 +28,11 @@ Check `git log` — this repo is built by incremental, conventional commits.
 ## Roadmap
 
 - [x] Phase Setup: toolchain, repo scaffold, `CLAUDE.md`, three commits
-- [ ] AI-assisted features with verified, committed history
+- [x] Phase Foundations · drill: settings form built twice (`settings-form/`, `WORKFLOW.md`)
+- [x] Phase Foundations · assignment: React app built with AI (`feature/settings-form-react`)
+- [x] Phase Foundations · deployment: Next.js app + health check + live preview (`capstone-app/`, `deliverables/DEPLOYMENT.md`)
+- [x] Phase Foundations · a11y: hand-built dialog, tabs, disclosure + keyboard tests + shadcn comparison (`playground/`, `playground/NOTES.md`)
+- [ ] Permanent Vercel/Netlify deploy (needs account login)
 
 ## License
 
